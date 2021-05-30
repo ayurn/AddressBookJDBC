@@ -1,3 +1,4 @@
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -58,5 +59,11 @@ public class AddressBookService {
 
     public int readAddressBookData(String function, String city) throws AddressBookException {
         return addressBookDBService.readDataBasedOnCity(function, city);
+    }
+
+    public void addNewContact(String firstName, String lastName, String address, String city, String state, String zip,
+                              String phoneNo, String email, String date) throws AddressBookException {
+        addressBookList.add(addressBookDBService.addNewContact(firstName, lastName, address, city, state, zip, phoneNo,
+                email, date));
     }
 }

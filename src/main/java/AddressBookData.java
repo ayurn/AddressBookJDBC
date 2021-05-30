@@ -1,5 +1,3 @@
-import java.math.BigDecimal;
-
 public class AddressBookData {
 
     String firstName;
@@ -7,12 +5,13 @@ public class AddressBookData {
     String address;
     String city;
     String state;
-    BigDecimal zip;
-    BigDecimal phoneNo;
+    String zip;
+    String phoneNo;
     String email;
+    String date;
 
-    public AddressBookData(String firstName, String lastName, String address, String city, String state, java.math.BigDecimal zip, java.math.BigDecimal phoneNo,
-                           String email) {
+    public AddressBookData(String firstName, String lastName, String address, String city, String state, String zip,
+                           String phoneNo, String email, String date) {
         super();
         this.firstName = firstName;
         this.lastName = lastName;
@@ -22,7 +21,16 @@ public class AddressBookData {
         this.zip = zip;
         this.phoneNo = phoneNo;
         this.email = email;
+        this.date = date;
 
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getFirstName() {
@@ -65,19 +73,19 @@ public class AddressBookData {
         this.state = state;
     }
 
-    public BigDecimal getZip() {
+    public String getZip() {
         return zip;
     }
 
-    public void setZip(BigDecimal zip) {
+    public void setZip(String zip) {
         this.zip = zip;
     }
 
-    public BigDecimal getPhoneNo() {
+    public String getPhoneNo() {
         return phoneNo;
     }
 
-    public void setPhoneNo(BigDecimal phoneNo) {
+    public void setPhoneNo(String phoneNo) {
         this.phoneNo = phoneNo;
     }
 
@@ -113,6 +121,11 @@ public class AddressBookData {
             if (other.city != null)
                 return false;
         } else if (!city.equals(other.city))
+            return false;
+        if (date == null) {
+            if (other.date != null)
+                return false;
+        } else if (!date.equals(other.date))
             return false;
         if (email == null) {
             if (other.email != null)
