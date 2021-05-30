@@ -42,4 +42,17 @@ public class AddressBookService {
         return this.addressBookList.stream().filter(addressBookItem -> addressBookItem.firstName.equals(firstname))
                 .findFirst().orElse(null);
     }
+
+    public List<AddressBookData> readAddressBookData(IOService ioService, String start, String end)
+            throws AddressBookException {
+        try {
+            LocalDate startLocalDate = LocalDate.parse(start);
+            LocalDate endLocalDate = LocalDate.parse(end);
+            if (ioService.equals(IOService.DB_IO))
+                return addressBookDBService.readData(startLocalDate, endLocalDate);
+            return this.addressBookList;
+        } catch (AddressBookException e) {
+            throw new AddressBookException(e.getMessage(), AddressBookException.ExceptionType.DATABASE_EXCEPTION);
+        }
+    }
 }
