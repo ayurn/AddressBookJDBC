@@ -31,12 +31,8 @@ public class AddressBookService {
     }
 
     public boolean checkUpdatedRecordSyncWithDatabase(String firstname) throws AddressBookException {
-        try {
             List<AddressBookData> addressBookData = addressBookDBService.getAddressBookData(firstname);
             return addressBookData.get(0).equals(getAddressBookData(firstname));
-        } catch (AddressBookException e) {
-            throw new AddressBookException(e.getMessage(), AddressBookException.ExceptionType.DATABASE_EXCEPTION);
-        }
     }
 
     private AddressBookData getAddressBookData(String firstname) {
@@ -65,5 +61,10 @@ public class AddressBookService {
                               String phoneNo, String email, String date) throws AddressBookException {
         addressBookList.add(addressBookDBService.addNewContact(firstName, lastName, address, city, state, zip, phoneNo,
                 email, date));
+    }
+
+    public void addMultipleContactsToDBUsingThreads(List<AddressBookData> record) {
+        AddressBookDBService addressBookDBService = new AddressBookDBService();
+        addressBookDBService.addMultipleContactsToDBUsingThread(record);
     }
 }
