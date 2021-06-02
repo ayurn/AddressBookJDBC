@@ -20,4 +20,19 @@ public class Contacts {
         this.phoneNumber = phoneNumber;
         this.emailId = emailId;
     }
+
+    @Override
+    public String toString() {
+        return "ContactData{" +
+            "id=" + id +
+            ", firstName='" + firstName + '\'' +
+            ", lastName='" + lastName + '\'' +
+            ", address='" + address + '\'' +
+            ", city='" + city + '\'' +
+            ", state='" + state + '\'' +
+            ", zip=" + zip +
+            ", phoneNumber='" + phoneNumber + '\'' +
+            ", emailId='" + emailId + '\'' +
+            '}';
+    }
 }

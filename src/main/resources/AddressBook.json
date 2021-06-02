@@ -41,7 +41,7 @@
       "city": "Amravati",
       "state": "Maharashtra",
       "zip": 432415,
-      "phoneNumber": "7985463215",
+      "phoneNumber": "7972910344",
       "emailId": "ayur@gmail.com"
     },
     {
@@ -54,6 +54,28 @@
       "zip": 745698,
       "phoneNumber": "7894561230",
       "emailId": "chris@gmail.com"
+    },
+    {
+      "id": 6,
+      "firstName": "Anuj",
+      "lastName": "Hade",
+      "address": "Betul sq",
+      "city": "Betul",
+      "state": "Madhya pradesh",
+      "zip": 852478,
+      "phoneNumber": "2354169870",
+      "emailId": "vijay@gmail.com"
+    },
+    {
+      "id": 7,
+      "firstName": "Shantanu",
+      "lastName": "Dhere",
+      "address": "Amt sq",
+      "city": "Amravati",
+      "state": "Maharashtra",
+      "zip": 963854,
+      "phoneNumber": "5478963254",
+      "emailId": "shashank@gmail.com"
     }
   ]
 }

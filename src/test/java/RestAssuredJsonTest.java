@@ -70,5 +70,47 @@ public class RestAssuredJsonTest {
         long entries = contactRestAPI.countEntries();
         Assertions.assertEquals(5, entries);
     }
+
+    @Test
+    void givenMultipleContacts_WhenAdded_ShouldMatchCount() {
+        ContactsRestAPI contactRestAPI;
+        Contacts[] dataArray = getContactDetails();
+        contactRestAPI = new ContactsRestAPI(Arrays.asList(dataArray));
+
+        Contacts[] arrayOfData = {
+                new Contacts(0, "Anuj", "Hade", "Betul sq", "Betul", "Madhya pradesh", 852478, "2354169870", "vijay@gmail.com"),
+                new Contacts(0, "Shantanu", "Dhere", "Amt sq", "Amravati", "Maharashtra", 963854, "5478963254", "shashank@gmail.com"),
+        };
+        for (Contacts contactData : arrayOfData) {
+            Response response = addContactToJSONServer(contactData);
+            contactData = new Gson().fromJson(response.asString(), Contacts.class);
+            contactRestAPI.addContact(contactData);
+        }
+
+        System.out.println("------ After Adding Into JSON Server ------");
+        getContactDetails();
+        long contacts = contactRestAPI.countEntries();
+        Assertions.assertEquals(7, contacts);
+    }
+
+    @Test
+    void givenUpdateQuery_WhenUpdated_ShouldReturn200ResponseCode() {
+        ContactsRestAPI contactRestAPI;
+        Contacts[] dataArray = getContactDetails();
+        contactRestAPI = new ContactsRestAPI(Arrays.asList(dataArray));
+
+        contactRestAPI.updateContact("Ayur", "7972910344");
+        Contacts contactData = contactRestAPI.getContact("Ayur");
+
+        RequestSpecification requestSpecification = RestAssured.given();
+        requestSpecification.header("Content-Type", "application/json");
+        String contactJSON = new Gson().toJson(contactData);
+        requestSpecification.body(contactJSON);
+        Response response = requestSpecification.put(RestAssured.baseURI + "/AddressBook/" + contactData.id);
+
+        System.out.println("After Updating we have: \n" + response.asString());
+        int statusCode = response.statusCode();
+        Assertions.assertEquals(200, statusCode);
+    }
 }
 
