@@ -27,7 +27,7 @@ public class RestAssuredJsonTest {
 
     private Contacts[] getContactDetails() {
         Response response = RestAssured.get(RestAssured.baseURI + "/AddressBook");
-        System.out.println("Employees in JSON Server are: \n" + response.asString());
+        System.out.println("Contacts in JSON Server are: \n" + response.asString());
         return new Gson().fromJson(response.asString(), Contacts[].class);
     }
 
@@ -78,7 +78,7 @@ public class RestAssuredJsonTest {
         contactRestAPI = new ContactsRestAPI(Arrays.asList(dataArray));
 
         Contacts[] arrayOfData = {
-                new Contacts(0, "Anuj", "Hade", "Betul sq", "Betul", "Madhya pradesh", 852478, "2354169870", "vijay@gmail.com"),
+                new Contacts(0, "Anuj", "Hade", "Betul sq", "Betul", "Madhya pradesh", 852478, "2354169870", "anuj@gmail.com"),
                 new Contacts(0, "Shantanu", "Dhere", "Amt sq", "Amravati", "Maharashtra", 963854, "5478963254", "shashank@gmail.com"),
         };
         for (Contacts contactData : arrayOfData) {
@@ -109,6 +109,23 @@ public class RestAssuredJsonTest {
         Response response = requestSpecification.put(RestAssured.baseURI + "/AddressBook/" + contactData.id);
 
         System.out.println("After Updating we have: \n" + response.asString());
+        int statusCode = response.statusCode();
+        Assertions.assertEquals(200, statusCode);
+    }
+
+    @Test
+    void givenDeleteQuery_WhenDeleted_ShouldReturn200ResponseCode() {
+        ContactsRestAPI contactRestAPI;
+        Contacts[] dataArray = getContactDetails();
+        contactRestAPI = new ContactsRestAPI(Arrays.asList(dataArray));
+
+        Contacts contactData = contactRestAPI.getContact("Shantanu");
+        RequestSpecification requestSpecification = RestAssured.given();
+        requestSpecification.header("Content-Type", "application/json");
+        Response response = requestSpecification.delete(RestAssured.baseURI + "/AddressBook/" + contactData.id);
+
+        System.out.print("------ After Deleting ------ ");
+        getContactDetails();
         int statusCode = response.statusCode();
         Assertions.assertEquals(200, statusCode);
     }

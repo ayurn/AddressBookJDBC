@@ -64,18 +64,7 @@
       "state": "Madhya pradesh",
       "zip": 852478,
       "phoneNumber": "2354169870",
-      "emailId": "vijay@gmail.com"
-    },
-    {
-      "id": 7,
-      "firstName": "Shantanu",
-      "lastName": "Dhere",
-      "address": "Amt sq",
-      "city": "Amravati",
-      "state": "Maharashtra",
-      "zip": 963854,
-      "phoneNumber": "5478963254",
-      "emailId": "shashank@gmail.com"
+      "emailId": "anuj@gmail.com"
     }
   ]
 }
