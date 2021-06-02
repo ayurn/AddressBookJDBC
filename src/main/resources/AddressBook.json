@@ -1,0 +1,59 @@
+{
+  "AddressBook": [
+    {
+      "id": 1,
+      "firstName": "Tushar",
+      "lastName": "Kumar",
+      "address": "Abc colont",
+      "city": "Nagpur",
+      "state": "Maharashtra",
+      "zip": 745698,
+      "phoneNumber": "7854123659",
+      "emailId": "tushar@gmail.com"
+    },
+    {
+      "id": 2,
+      "firstName": "Lokesh",
+      "lastName": "Choudhary",
+      "address": "ct mall sq",
+      "city": "Nagpur",
+      "state": "Maharashtra",
+      "zip": 745698,
+      "phoneNumber": "7598634125",
+      "emailId": "lokesh@gmail.com"
+    },
+    {
+      "id": 3,
+      "firstName": "Mark",
+      "lastName": "Evans",
+      "address": "dastur square",
+      "city": "Amravati",
+      "state": "Maharashtra",
+      "zip": 432415,
+      "phoneNumber": "2549785612",
+      "emailId": "mark@gmail.com"
+    },
+    {
+      "id": 4,
+      "firstName": "Ayur",
+      "lastName": "Ninawe",
+      "address": "Yashoda sq",
+      "city": "Amravati",
+      "state": "Maharashtra",
+      "zip": 432415,
+      "phoneNumber": "7985463215",
+      "emailId": "ayur@gmail.com"
+    },
+    {
+      "id": 5,
+      "firstName": "chris",
+      "lastName": "Adams",
+      "address": "house number 23",
+      "city": "New York",
+      "state": "NY",
+      "zip": 745698,
+      "phoneNumber": "7894561230",
+      "emailId": "chris@gmail.com"
+    }
+  ]
+}
