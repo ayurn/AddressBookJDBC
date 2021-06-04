@@ -27,7 +27,6 @@ public class RestAssuredJsonTest {
 
     private Contacts[] getContactDetails() {
         Response response = RestAssured.get(RestAssured.baseURI + "/AddressBook");
-        System.out.println("Contacts in JSON Server are: \n" + response.asString());
         return new Gson().fromJson(response.asString(), Contacts[].class);
     }
 
@@ -51,7 +50,7 @@ public class RestAssuredJsonTest {
         Contacts[] contactData = getContactDetails();
         ContactsRestAPI contactsRestAPI = new ContactsRestAPI(Arrays.asList(contactData));
         long entries = contactsRestAPI.countEntries();
-        Assertions.assertEquals(4, entries);
+        Assertions.assertEquals(6, entries);
     }
 
     @Test
@@ -61,14 +60,13 @@ public class RestAssuredJsonTest {
         contactRestAPI = new ContactsRestAPI(Arrays.asList(dataArray));
 
         Contacts contactData;
-        contactData = new Contacts(5, "chris", "Adams", "house number 23", "New York", "NY", 745698, "7894561230", "chris@gmail.com");
+        contactData = new Contacts(0, "chris", "Adams", "house number 23", "New York", "NY", 745698, "7894561230", "chris@gmail.com");
         Response response = addContactToJSONServer(contactData);
 
         contactData = new Gson().fromJson(response.asString(), Contacts.class);
         contactRestAPI.addContact(contactData);
-        System.out.println("------ After Adding Into JSON Server ------\n" + getContactDetails());
-        long entries = contactRestAPI.countEntries();
-        Assertions.assertEquals(5, entries);
+        long entry = contactRestAPI.countEntries();
+        Assertions.assertEquals(5, entry);
     }
 
     @Test
@@ -78,7 +76,7 @@ public class RestAssuredJsonTest {
         contactRestAPI = new ContactsRestAPI(Arrays.asList(dataArray));
 
         Contacts[] arrayOfData = {
-                new Contacts(0, "Anuj", "Hade", "Betul sq", "Betul", "Madhya pradesh", 852478, "2354169870", "anuj@gmail.com"),
+                new Contacts(0,"Anuj", "Hade", "Betul sq", "Betul", "Madhya pradesh", 852478, "2354169870", "anuj@gmail.com"),
                 new Contacts(0, "Shantanu", "Dhere", "Amt sq", "Amravati", "Maharashtra", 963854, "5478963254", "shashank@gmail.com"),
         };
         for (Contacts contactData : arrayOfData) {
@@ -87,8 +85,6 @@ public class RestAssuredJsonTest {
             contactRestAPI.addContact(contactData);
         }
 
-        System.out.println("------ After Adding Into JSON Server ------");
-        getContactDetails();
         long contacts = contactRestAPI.countEntries();
         Assertions.assertEquals(7, contacts);
     }
@@ -99,7 +95,7 @@ public class RestAssuredJsonTest {
         Contacts[] dataArray = getContactDetails();
         contactRestAPI = new ContactsRestAPI(Arrays.asList(dataArray));
 
-        contactRestAPI.updateContact("Ayur", "7972910344");
+        contactRestAPI.updateContact("Ayur", "741258964");
         Contacts contactData = contactRestAPI.getContact("Ayur");
 
         RequestSpecification requestSpecification = RestAssured.given();
@@ -108,7 +104,6 @@ public class RestAssuredJsonTest {
         requestSpecification.body(contactJSON);
         Response response = requestSpecification.put(RestAssured.baseURI + "/AddressBook/" + contactData.id);
 
-        System.out.println("After Updating we have: \n" + response.asString());
         int statusCode = response.statusCode();
         Assertions.assertEquals(200, statusCode);
     }
@@ -124,8 +119,6 @@ public class RestAssuredJsonTest {
         requestSpecification.header("Content-Type", "application/json");
         Response response = requestSpecification.delete(RestAssured.baseURI + "/AddressBook/" + contactData.id);
 
-        System.out.print("------ After Deleting ------ ");
-        getContactDetails();
         int statusCode = response.statusCode();
         Assertions.assertEquals(200, statusCode);
     }

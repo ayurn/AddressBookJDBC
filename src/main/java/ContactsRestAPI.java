@@ -20,6 +20,7 @@ public class ContactsRestAPI {
         return this.dataList.stream().filter(dataItem -> dataItem.firstName.equals(name)).findFirst().orElse(null);
     }
 
+
     public void updateContact(String name, String phonenumber) {
         Contacts contactData = this.getContact(name);
         if(contactData != null) {
